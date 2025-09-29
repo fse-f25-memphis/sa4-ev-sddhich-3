@@ -14,6 +14,33 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_22_192147) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cars", force: :cascade do |t|
+    t.string "make"
+    t.string "model"
+    t.integer "year"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "height_inches"
+    t.integer "weight_lbs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.integer "order_number"
+    t.string "title"
+    t.string "artist"
+    t.integer "length_in_seconds"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "video_games", force: :cascade do |t|
     t.string "title"
     t.integer "year"

@@ -1,0 +1,29 @@
+<h1>New Video Game</h1>
+
+<% if flash[:danger] || (@video_game && @video_game.errors.any?) %>
+  <div class="alert alert-danger">
+    <%= flash[:danger] if flash[:danger] %>
+
+    <% if @video_game.errors.any? %>
+      <h2><%= pluralize(@video_game.errors.count, "error") %> prohibited this video game from being saved:</h2>
+      <ul>
+        <% @video_game.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= bootstrap_form_with(model: @video_game, url: video_games_path, local: true) do |f| %>
+  <%= f.text_field :title, label: "Title" %>
+  <%= f.number_field :year, label: "Year" %>
+  <%= f.text_field :publisher, label: "Publisher" %>
+  <%= f.select :genre, ['Action', 'Adventure', 'Strategy', 'RPG', 'Sports'], { include_blank: true, label: "Genre" } %>
+
+  <%= f.submit "Create Video game", class: "btn btn-primary" %>
+<% end %>
+
+<p>
+  <%= link_to 'Cancel', video_games_path, class: "btn btn-secondary" %>
+</p>
